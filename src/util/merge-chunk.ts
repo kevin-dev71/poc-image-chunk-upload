@@ -1,9 +1,11 @@
 import fs from "fs"
+import { tmpdir } from "os"
 import path from "path"
 
 export const mergeChunks = async (fileName: string, totalChunks: number) => {
-  const chunkDir = path.join(process.cwd(), "src", "uploads", "chunk")
-  const mergedFilePath = path.join(process.cwd(), "src", "uploads", "merged_files")
+  const dirName = tmpdir()
+  const chunkDir = path.join(dirName, "chunks")
+  const mergedFilePath = path.join(dirName, "merged_files")
 
   if (!fs.existsSync(mergedFilePath)) {
     fs.mkdirSync(mergedFilePath, { recursive: true })

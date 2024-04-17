@@ -1,4 +1,5 @@
 import fs from "fs"
+import { tmpdir } from "os"
 import path from "path"
 
 import { mergeChunks } from "@/util/merge-chunk"
@@ -12,7 +13,7 @@ export async function POST(request: Request) {
     const fileName = (formData.get("originalname") as string).replaceAll(" ", "_")
 
     // HANDLE UNIQUE PATH TO PREVENT OVERWRITE IN CONCURRENCE
-    const chunkDir = path.join(process.cwd(), "src", "uploads", "chunk")
+    const chunkDir = path.join(tmpdir(), "chunks")
 
     if (!fs.existsSync(chunkDir)) {
       fs.mkdirSync(chunkDir, { recursive: true })
