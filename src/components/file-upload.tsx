@@ -35,7 +35,7 @@ export default function FileUpload() {
         formData.append("totalChunks", totalChunks.toString())
         formData.append("originalname", selectedFile.name)
 
-        fetch("http://localhost:3000/api/upload", {
+        fetch("/api/upload", {
           method: "POST",
           body: formData,
         })

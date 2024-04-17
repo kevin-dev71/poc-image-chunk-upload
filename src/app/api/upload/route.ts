@@ -29,6 +29,7 @@ export async function POST(request: Request) {
       // If this is the last chunk, merge all chunks into a single file
       await mergeChunks(fileName, Number(totalChunks))
       console.log("File merged successfully")
+      // UPLOAD THIS FILE TO A BUCKET
     }
 
     return Response.json({ message: "chunk uploaded" }, { status: 200 })
